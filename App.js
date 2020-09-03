@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { Text, View, Button } from 'react-native';
-import wordList from './wordsList';
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { View } from 'react-native';
 import styles from './src/styles';
+import { mapWordsSelectFlag, mapWordsTranslate, arrWords } from './src/constants';
+import BottomMenu from './src/components/BottomMenu';
+import PageContainer from './src/components/PageContainer';
 
-const mapWords = new Map(Object.entries(wordList));
-const arrWords = new Array();
-mapWords.forEach((v,k) => arrWords.push(k));
-const STEP = 6;
-const LAST_PAGE = arrWords.length - STEP;
+setInitializeData();
 
 const App = () => {
 
@@ -16,50 +13,17 @@ const App = () => {
 
   return (
     <View style={styles.mainConteiner}>
-      <View style={styles.container}>
-        <WordContainer word={arrWords[0 + counter]}/>
-        <WordContainer word={arrWords[1 + counter]}/>
-        <WordContainer word={arrWords[2 + counter]}/>
-        <WordContainer word={arrWords[3 + counter]}/>
-        <WordContainer word={arrWords[4 + counter]}/>
-        <WordContainer word={arrWords[5 + counter]}/>
+       <View style={styles.container}>
+        <PageContainer counter={counter} />
         <BottomMenu counter={counter} updateCounter={setCounter}/>
-      </View>
+      </View> 
     </View>
   );
 }
 
-const WordContainer = ({ word }) => {
-  const [isSelect, setIsSelect] = useState(false);
-
-  return (
-    <View style={styles.wordContainer}>
-      <Text onPress={() => setIsSelect((isSelect) ? false : true)}
-        style={(isSelect) ? styles.wordSelected : styles.wordNotSelected}
-        >
-        {word}
-      </Text>
-      <View style={styles.checkWord}>
-        <MaterialCommunityIcons 
-          name={(isSelect) ? "check-bold" : "check-outline"} 
-          backgroundColor="green" 
-          size={60} />
-      </View>
-    </View>
-  );
+function setInitializeData() {
+  mapWordsTranslate.forEach((v,k) => arrWords.push(k));
+  arrWords.forEach(v => mapWordsSelectFlag.set(v, false));
 }
-
-const BottomMenu = ({ counter, updateCounter }) => {
-  return (
-    <View style={styles.bottomMenu}>
-      {(counter == 0) ? null 
-      : <Button onPress={() => updateCounter(counter - STEP)} title="BACK PAGE" />
-      }
-      {(counter == LAST_PAGE) ? null 
-      : <Button onPress={() => updateCounter(counter + STEP)} title="NEXT PAGE" />
-      }
-    </View>
-  );
-};
 
 export default App;
