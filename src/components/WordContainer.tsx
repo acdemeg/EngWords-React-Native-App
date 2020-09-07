@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Text, View } from 'react-native';
-import { mapWordsSelectFlag } from '../constants';
+import { mapWordsSelectFlag } from '../utils/index';
 import styles from '../styles';
 
-const WordContainer = ({ word }) => {
+interface WordContainerProps {
+  word: string;
+}
+
+const WordContainer: React.FC<WordContainerProps> = ({ word }) => {
   const [isSelect, setIsSelect] = useState(mapWordsSelectFlag.get(word));
 
   return (
