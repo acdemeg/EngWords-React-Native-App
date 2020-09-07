@@ -9,11 +9,12 @@ interface PreviewProps {
 const Preview: React.FC<PreviewProps> = ({ offPreview }) => {
   return (
       <View style={styles.previewContainer}>
-        <Text style={styles.wordStyle}>
-          App EngWords let check your 
-          vocabulary and to define language level.
-          You need select known words from 100 most popular english words. 
-          Then app will count percent your right answers.
+        <Text style={styles.textStyle}>
+          Приложение EngWords проверить вас словарный запас.
+          Вам необходимо выбрать из 100 предложенных популярных слов те
+          которые вы знаете. 
+          Приложение будет иногда проверять вас на честность.
+          В конце вы увидите итоговый процент правильных ответов.
         </Text>
         <Button color={"indigo"} onPress={() => offPreview(false)} title="START" />
       </View>

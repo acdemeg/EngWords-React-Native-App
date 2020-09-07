@@ -10,8 +10,8 @@ interface ResultScreenProps {
 const ResultScreen: React.FC<ResultScreenProps> = ({ reset }) => {
   return (
       <View style={styles.previewContainer}>
-        <Text style={styles.wordStyle}>
-          You right to answer on {calculatePercentSelectedWords()}% of words!
+        <Text style={styles.textStyle}>
+          Вы знаете {calculatePercentSelectedWords()}% слов!
         </Text>
         <Button 
           color={"indigo"} 

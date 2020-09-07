@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle, TextStyle, Dimensions } from 'react-native';
+import { StyleSheet, ViewStyle, TextStyle, Dimensions, PixelRatio } from 'react-native';
 
 const mainConteiner: ViewStyle = {
   flex: 1,
@@ -18,12 +18,18 @@ const previewContainer: ViewStyle = {
 }
 
 const wordStyle: TextStyle = {
-  fontSize: 38,
+  fontSize: PixelRatio.get()*10,
   textAlign: "center",
-  padding: 10,
+  textAlignVertical: "center",
   borderBottomLeftRadius: 5,
   borderTopLeftRadius: 5,
   width: (Dimensions.get("window").width) / 1.5,
+};
+
+const textStyle: TextStyle = {
+  fontSize: PixelRatio.get()*10,
+  textAlign: "center",
+  marginHorizontal: 20,
 };
 
 const wordSelected: ViewStyle = {
@@ -68,6 +74,7 @@ interface Styles {
   bottomMenu: ViewStyle,
   mainConteiner: ViewStyle,
   wordStyle: TextStyle,
+  textStyle: TextStyle,
   previewContainer: ViewStyle
 }
 
@@ -80,5 +87,6 @@ export default StyleSheet.create<Styles>({
   bottomMenu,
   mainConteiner,
   wordStyle,
+  textStyle,
   previewContainer
 });
